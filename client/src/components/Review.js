@@ -514,6 +514,7 @@ const Review = () => {
   const [tlName, setTLName] = useState('');
   const [starsKey, setStarsKey] = useState(Date.now());
   const navigate = useNavigate();
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   const tlNames = [
     'TL-09 - Abhinandan',
@@ -546,7 +547,7 @@ const Review = () => {
     }
 
     axios
-      .post('http://localhost:8000/api/reviews', {
+      .post(`${backendUrl}/api/reviews`, {
         name,
         email,
         phoneNumber,

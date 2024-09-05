@@ -32,13 +32,14 @@ const ReviewText = styled.p`
 
 const ReviewsDashboard = () => {
   const [reviews, setReviews] = useState([]);
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   useEffect(() => {
     fetchReviews();
   }, []);
 
   const fetchReviews = () => {
-    axios.get('http://localhost:8000/api/reviews')
+    axios.get(`${backendUrl}/api/reviews`)
       .then(response => {
         setReviews(response.data);
       })
@@ -49,7 +50,7 @@ const ReviewsDashboard = () => {
 
   const handleDeleteReview = async (id) => {
     try {
-      await axios.delete(`http://localhost:8000/api/reviews/${id}`);
+      await axios.delete(`${backendUrl}/api/reviews/${id}`);
       fetchReviews(); // Refresh reviews after deletion
     } catch (error) {
       console.error('Error deleting review:', error);
