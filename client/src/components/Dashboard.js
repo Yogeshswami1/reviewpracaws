@@ -93,6 +93,7 @@ const Dashboard = () => {
   const [filteredReviews, setFilteredReviews] = useState([]);
   const [filterRating, setFilterRating] = useState('');
   const [filterTLName, setFilterTLName] = useState('');
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   const tlNames = [
     'TL-09 - Abhinandan',
@@ -104,7 +105,7 @@ const Dashboard = () => {
   ];
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/reviews')
+    axios.get(`${backendUrl}/api/reviews`)
       .then(response => {
         setReviews(response.data);
         setFilteredReviews(response.data);
@@ -113,7 +114,7 @@ const Dashboard = () => {
   }, []);
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:8000/api/reviews/${id}`)
+    axios.delete(`${backendUrl}/api/reviews/${id}`)
       .then(response => {
         setFilteredReviews(filteredReviews.filter(review => review._id !== id));
         setReviews(reviews.filter(review => review._id !== id));
