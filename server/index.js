@@ -8,7 +8,7 @@ dotenv.config();
 const app = express();
 app.use(bodyParser.json());
 app.use(cors({
-    origin: 'http://reviewfrontendaws.saumic.com',
+    origin: 'https://reviewfrontendaws.saumic.com',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true // If you are dealing with cookies or sessions
