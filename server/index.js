@@ -7,8 +7,12 @@ import router from "./routes/reviewRoutes.js";
 dotenv.config();
 const app = express();
 app.use(bodyParser.json());
-app.use(cors());
-const PORT = process.env.PORT || 7000;
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true // If you are dealing with cookies or sessions
+}));const PORT = process.env.PORT || 7000;
 const URL = process.env.MONGOURL;
 
 app.use('/api', router);
